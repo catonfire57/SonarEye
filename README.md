@@ -4,6 +4,9 @@
 
 ---------------------- 
 
+![{152F8D94-774A-4EF0-8B84-17891D1C9F40}](https://github.com/user-attachments/assets/16a35271-ff91-43f1-ab2d-e4f21aebfe5d)
+
+
 SonarEye is an innovative assistive device designed to support individuals with visual impairments by providing real-time distance feedback. Utilizing an ultrasonic sensor, SonarEye detects the proximity of obstacles in the user's path. The device activates a buzzer to alert the user as they approach an obstacle:
 
 -At a distance of 150 cm, the buzzer emits a slow, rhythmic sound, indicating a safe range.
