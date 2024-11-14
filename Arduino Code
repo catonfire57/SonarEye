@@ -1,0 +1,61 @@
+#include <Adafruit_LiquidCrystal.h>
+const int trig=9;
+const int echo=10;
+const int buzzer=11;
+
+Adafruit_LiquidCrystal lcd(0);
+
+void setup()
+{
+  pinMode(echo, INPUT);
+  pinMode(trig, OUTPUT);
+  pinMode(buzzer, OUTPUT);
+  Serial.begin(9600);
+  lcd.begin(16, 2);         // Set the LCD size (16 columns, 2 rows)
+  lcd.setBacklight(true);   // Turn on the backlight
+  lcd.setCursor(0, 0);      // Set cursor to the first row, first column
+  lcd.print("Distance:");
+}
+
+void loop()
+{
+  digitalWrite(trig, 0);
+  delayMicroseconds(2);
+  digitalWrite(trig, 1);
+  delayMicroseconds(100);
+  digitalWrite(trig, 0);
+  
+  
+  long duration = pulseIn(echo, 1);
+  
+  float distance = duration * 0.034 / 2; // speed of sound in air 343 m/s
+  
+  lcd.setCursor(0, 1);       // Move to the beginning of the second row
+  lcd.print("            ");  // Clear the previous distance
+  lcd.setCursor(0, 1);
+  lcd.print(distance);
+  lcd.print(" cm");
+  
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.println(" cm");
+  
+  if (distance <= 50)
+  {
+    digitalWrite(buzzer, 1);
+    delay(20);
+    digitalWrite(buzzer, 0);
+    delay(20);
+  }
+  else if (distance <= 150)
+  {
+    digitalWrite(buzzer, 1);
+    delay(200);
+    digitalWrite(buzzer, 0);
+    delay(200);
+  }
+  else {
+    digitalWrite(buzzer, 0);
+  }
+  delay(100);
+}
